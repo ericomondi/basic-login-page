@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/favicoin.png" />
     <style>
       .container {
         position: relative;
@@ -108,17 +109,24 @@
         <h1>Login</h1>
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required />
+        <input
+          type="text"
+          placeholder="Enter Email"
+          id="email"
+          name="email"
+          required
+        />
 
         <label for="psw"><b>Password</b></label>
         <input
+          id="password"
           type="password"
           placeholder="Enter Password"
           name="psw"
           required
         />
 
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn" onclick="check_input()">Login</button>
         <button type="button" class="btn cancel" onclick="closeForm()">
           Close
         </button>
@@ -131,6 +139,31 @@
 
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
+      }
+
+      var myform = document.getElementById("myForm");
+      myform.addEventListener("submit", function (e) {
+        e.preventDefault();
+      });
+
+      function check_input() {
+        for (i = 3; i > 0; i--) {
+          // let sav_email = "admin@mail.com";
+          // let sav_pass = "Admin@123";
+          let email = document.getElementById("email").value;
+          let pass = document.getElementById("password").value;
+
+          if (email == "admin@mail.com" && password == "Admin@123") {
+            alert("Login Successful");
+            break;
+          } //   if it's not and the tries have elapsed, then it alerts
+          else if (i == 1) {
+            alert("The account is blocked");
+          } //   if its not but the ries have not elapsed
+          else {
+            alert("Invalid username or password try again");
+          }
+        }
       }
     </script>
   </body>
