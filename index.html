@@ -15,35 +15,18 @@
         position: absolute;
         /* background-color: aqua; */
         left: 30%;
-        top: 30%;
+        top: 20%;
       }
       .login_btn {
         height: 30px;
-        width: 70px;
+        width: 100px;
         border-radius: 35px;
-        margin-left: 95px;
+        margin-left: 120px;
       }
       .sign_btn {
         height: 30px;
         width: 70px;
         border-radius: 35px;
-      }
-       /* {
-        box-sizing: border-box;
-      } */
-
-      /* Button used to open the contact form - fixed at the bottom of the page */
-      .open-button {
-        background-color: #555;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        opacity: 0.8;
-        position: fixed;
-        bottom: 23px;
-        right: 28px;
-        width: 280px;
       }
 
       /* The popup form - hidden by default */
@@ -113,12 +96,15 @@
         />
         <br />
         <button class="login_btn" onclick="openForm()">Login</button>
-        <button class="sign_btn" onclick="openForm()">Sign up</button>
+        <!-- <button class="sign_btn" onclick="openForm()">Sign up</button> -->
       </div>
     </div>
     <!-- The form -->
     <div class="form-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
+      <form
+        action="https://github.com/ericomondi/basic-login-page.git"
+        class="form-container"
+      >
         <h1>Login</h1>
 
         <label for="email"><b>Email</b></label>
