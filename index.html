@@ -32,7 +32,7 @@
             placeholder="Enter Email"
             id="email"
             name="email"
-            required
+            required=""
           />
 
           <label for="psw"><b>Password</b></label>
@@ -41,8 +41,10 @@
             type="password"
             placeholder="Enter Password"
             name="psw"
-            required
+            required=""
           />
+          <!-- An element to toggle between password visibility -->
+          <input type="checkbox" onclick="toggle_pass()" />Show Password
           <!-- <div id="sucalert_mes erralert_mes" class="alert_mes"></div> -->
           <input
             type="button"

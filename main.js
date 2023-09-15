@@ -5,7 +5,14 @@ function openForm() {
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
-
+function toggle_pass() {
+ var p = document.getElementById("password");
+  if (p.type === "password"){
+    p.type = "text"
+  }else{
+    p.type = "password"
+  }
+}
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 function validate() {
