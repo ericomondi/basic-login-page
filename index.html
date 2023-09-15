@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>login-page</title>
     <link rel="icon" type="image/x-icon" href="/favicoin.png" />
     <style>
       .container {
@@ -18,9 +18,9 @@
         left: 30%;
         top: 20%;
       }
-      .login_btn {
+      .container .login_btn {
         height: 30px;
-        width: 100px;
+        width: 130px;
         border-radius: 35px;
         margin-left: 120px;
       }
@@ -56,6 +56,11 @@
         border: none;
         background: #f1f1f1;
       }
+      /* set the width for the inputs */
+      .form-container input[type="text"],
+      .form-container input[type="password"] {
+        width: 270px;
+      }
 
       /* When the inputs get focus, do something */
       .form-container input[type="text"]:focus,
@@ -86,9 +91,20 @@
       .open-button:hover {
         opacity: 1;
       }
+      /* add color to alert message */
+      /* .alert_mes {
+        color: red;
+      } */
+      .form-popup .note {
+        color: red;
+      }
+      .form-popup .valid {
+        color: green;
+      }
     </style>
   </head>
   <body>
+    <!-- dashboard -->
     <div class="container">
       <div class="login_div">
         <img
@@ -96,16 +112,14 @@
           alt=""
         />
         <br />
-        <button class="login_btn" onclick="openForm()">Login</button>
-        <!-- <button class="sign_btn" onclick="openForm()">Sign up</button> -->
+        <button class="login_btn" onclick="openForm()">Access Account</button>
+        
       </div>
     </div>
+
     <!-- The form -->
     <div class="form-popup" id="myForm">
-      <form
-        action="https://github.com/ericomondi/basic-login-page.git"
-        class="form-container"
-      >
+      <form class="form-container" id="the_form" method="post" name="myform">
         <h1>Login</h1>
 
         <label for="email"><b>Email</b></label>
@@ -125,11 +139,24 @@
           name="psw"
           required
         />
+        <!-- <div id="sucalert_mes erralert_mes" class="alert_mes"></div> -->
+        <input
+          type="button"
+          value="Login"
+          id="login"
+          class="btn"
+          onclick="validate()"
+        />
 
-        <button type="submit" class="btn" onclick="check_input()">Login</button>
         <button type="button" class="btn cancel" onclick="closeForm()">
           Close
         </button>
+        <span
+          ><b class="note">Note : </b>For this demo use following email and
+          password. <br /><b class="valid"
+            >Email : test@mail.com <br />Password : test#123</b
+          ></span
+        >
       </form>
     </div>
     <script>
@@ -141,28 +168,36 @@
         document.getElementById("myForm").style.display = "none";
       }
 
-      var myform = document.getElementById("myForm");
-      myform.addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
+      var attempt = 3; // Variable to count number of attempts.
+      // Below function Executes on click of login button.
+      function validate() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var email_len = document.getElementById("email").value.length;
+        var password_len = document.getElementById("password").value.length;
 
-      function check_input() {
-        for (i = 3; i > 0; i--) {
-          // let sav_email = "admin@mail.com";
-          // let sav_pass = "Admin@123";
-          let email = document.getElementById("email").value;
-          let pass = document.getElementById("password").value;
+        if (email_len > 0 && password_len > 0) {
+          if (email == "test@mail.com" && password == "test#123") {
+            alert("Login successfully");
+            window.location = URL =
+              "https://github.com/ericomondi/basic-login-page"; // Redirecting to other page.
+            return false;
+          } else {
+            attempt--; // Decrementing by one.
 
-          if (email == "admin@mail.com" && password == "Admin@123") {
-            alert("Login Successful");
-            break;
-          } //   if it's not and the tries have elapsed, then it alerts
-          else if (i == 1) {
-            alert("The account is blocked");
-          } //   if its not but the ries have not elapsed
-          else {
-            alert("Invalid username or password try again");
+            // Disabling email, password and login fields after 3 attempts.
+            if (attempt == 0) {
+              document.getElementById("email").disabled = true;
+              document.getElementById("password").disabled = true;
+              document.getElementById("login").disabled = true;
+              alert("Account Blocked. Contact Admin");
+              return false;
+            }
+
+            alert("You have left " + attempt + " attempt;");
           }
+        } else {
+          alert("Inputs cant be empty");
         }
       }
     </script>
