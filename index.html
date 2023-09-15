@@ -5,103 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login-page</title>
     <link rel="icon" type="image/x-icon" href="/favicoin.png" />
-    <style>
-      .container {
-        position: relative;
-        background-color: aqua;
-        width: 100%;
-        height: 700px;
-      }
-      .login_div {
-        position: absolute;
-        /* background-color: aqua; */
-        left: 30%;
-        top: 20%;
-      }
-      .container .login_btn {
-        height: 30px;
-        width: 130px;
-        border-radius: 35px;
-        margin-left: 120px;
-      }
-      .sign_btn {
-        height: 30px;
-        width: 70px;
-        border-radius: 35px;
-      }
-
-      /* The popup form - hidden by default */
-      .form-popup {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        right: 15px;
-        border: 3px solid #f1f1f1;
-        z-index: 9;
-      }
-
-      /* Add styles to the form container */
-      .form-container {
-        max-width: 300px;
-        padding: 10px;
-        background-color: white;
-      }
-
-      /* Full-width input fields */
-      .form-container input[type="text"],
-      .form-container input[type="password"] {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        border: none;
-        background: #f1f1f1;
-      }
-      /* set the width for the inputs */
-      .form-container input[type="text"],
-      .form-container input[type="password"] {
-        width: 270px;
-      }
-
-      /* When the inputs get focus, do something */
-      .form-container input[type="text"]:focus,
-      .form-container input[type="password"]:focus {
-        background-color: #ddd;
-        outline: none;
-      }
-
-      /* Set a style for the submit/login button */
-      .form-container .btn {
-        background-color: #04aa6d;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        margin-bottom: 10px;
-        opacity: 0.8;
-      }
-
-      /* Add a red background color to the cancel button */
-      .form-container .cancel {
-        background-color: red;
-      }
-
-      /* Add some hover effects to buttons */
-      .form-container .btn:hover,
-      .open-button:hover {
-        opacity: 1;
-      }
-      /* add color to alert message */
-      /* .alert_mes {
-        color: red;
-      } */
-      .form-popup .note {
-        color: red;
-      }
-      .form-popup .valid {
-        color: green;
-      }
-    </style>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="main.css" />
+    <!-- script -->
+    <script src="main.js"></script>
   </head>
   <body>
     <!-- dashboard -->
@@ -113,93 +20,49 @@
         />
         <br />
         <button class="login_btn" onclick="openForm()">Access Account</button>
-        
+      </div>
+      <!-- The form -->
+      <div class="form-popup" id="myForm">
+        <form class="form-container" id="the_form" method="post" name="myform">
+          <h1>Login</h1>
+
+          <label for="email"><b>Email</b></label>
+          <input
+            type="text"
+            placeholder="Enter Email"
+            id="email"
+            name="email"
+            required
+          />
+
+          <label for="psw"><b>Password</b></label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
+          <!-- <div id="sucalert_mes erralert_mes" class="alert_mes"></div> -->
+          <input
+            type="button"
+            value="Login"
+            id="login"
+            class="btn"
+            onclick="validate()"
+          />
+
+          <button type="button" class="btn cancel" onclick="closeForm()">
+            Close
+          </button>
+          <span
+            ><b class="note">Note : </b>For this demo use following email and
+            password. <br /><b class="valid"
+              >Email : test@mail.com <br />Password : test#123</b
+            ></span
+          >
+        </form>
       </div>
     </div>
-
-    <!-- The form -->
-    <div class="form-popup" id="myForm">
-      <form class="form-container" id="the_form" method="post" name="myform">
-        <h1>Login</h1>
-
-        <label for="email"><b>Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Email"
-          id="email"
-          name="email"
-          required
-        />
-
-        <label for="psw"><b>Password</b></label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-        />
-        <!-- <div id="sucalert_mes erralert_mes" class="alert_mes"></div> -->
-        <input
-          type="button"
-          value="Login"
-          id="login"
-          class="btn"
-          onclick="validate()"
-        />
-
-        <button type="button" class="btn cancel" onclick="closeForm()">
-          Close
-        </button>
-        <span
-          ><b class="note">Note : </b>For this demo use following email and
-          password. <br /><b class="valid"
-            >Email : test@mail.com <br />Password : test#123</b
-          ></span
-        >
-      </form>
-    </div>
-    <script>
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
-      }
-
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-      }
-
-      var attempt = 3; // Variable to count number of attempts.
-      // Below function Executes on click of login button.
-      function validate() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var email_len = document.getElementById("email").value.length;
-        var password_len = document.getElementById("password").value.length;
-
-        if (email_len > 0 && password_len > 0) {
-          if (email == "test@mail.com" && password == "test#123") {
-            alert("Login successfully");
-            window.location = URL =
-              "https://github.com/ericomondi/basic-login-page"; // Redirecting to other page.
-            return false;
-          } else {
-            attempt--; // Decrementing by one.
-
-            // Disabling email, password and login fields after 3 attempts.
-            if (attempt == 0) {
-              document.getElementById("email").disabled = true;
-              document.getElementById("password").disabled = true;
-              document.getElementById("login").disabled = true;
-              alert("Account Blocked. Contact Admin");
-              return false;
-            }
-
-            alert("You have left " + attempt + " attempt;");
-          }
-        } else {
-          alert("Inputs cant be empty");
-        }
-      }
-    </script>
   </body>
 </html>
