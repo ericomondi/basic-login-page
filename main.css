@@ -61,6 +61,11 @@
   outline: none;
 }
 
+/* edit the login button */
+.form-container input[type="button"]{
+  margin-top: 10px;
+}
+
 /* Set a style for the submit/login button */
 .form-container .btn {
   background-color: #04aa6d;
@@ -92,4 +97,8 @@
 }
 .form-popup .valid {
   color: green;
+}
+.form-container p{
+  display: inline;
+  font-weight: 600;
 }
